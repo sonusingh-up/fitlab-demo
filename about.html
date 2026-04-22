@@ -11,11 +11,65 @@
   <link rel="icon" type="image/svg+xml" href="fav.svg"/>
   <link rel="shortcut icon" href="fav.svg"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Learn about the person behind FitLabReviews — certified nutrition coach Jake Reynolds. Our review methodology, credentials, and mission."/>
-  <title>About the Reviewer — FitLabReviews</title>
+  <meta name="description" content="About FitLabReviews — founded by a B.Pharma student and DMLT graduate. Learn about our team, review methodology, scoring system, and editorial independence policy."/>
+  <title>About FitLabReviews — Our Team, Methodology & Mission</title>
+  <link rel="canonical" href="https://fitlabreviews.com/about.html"/>
   <link rel="stylesheet" href="style.css"/>
+
+  <!-- Person + Organization Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://fitlabreviews.com/#organization",
+        "name": "FitLabReviews",
+        "url": "https://fitlabreviews.com",
+        "logo": "https://fitlabreviews.com/favicon.svg",
+        "description": "Independent supplement review platform applying pharmaceutical science to ingredient analysis. No paid placements. No brand bias.",
+        "founder": {
+          "@type": "Person",
+          "name": "Pankaj Singh",
+          "url": "https://fitlabreviews.com/authors/pankaj-singh.html",
+          "sameAs": "https://www.linkedin.com/in/pankaj-singh-171b0a404/"
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://fitlabreviews.com/authors/pankaj-singh.html#person",
+        "name": "Pankaj Singh",
+        "jobTitle": "Founder & Supplement Researcher",
+        "url": "https://fitlabreviews.com/authors/pankaj-singh.html",
+        "image": "https://fitlabreviews.com/images/authors/pankaj-singh.jpg",
+        "sameAs": ["https://www.linkedin.com/in/pankaj-singh-171b0a404/"],
+        "hasCredential": [
+          {
+            "@type": "EducationalOccupationalCredential",
+            "name": "Bachelor of Pharmacy (B.Pharma)",
+            "credentialCategory": "degree"
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "name": "Diploma in Medical Laboratory Technology (DMLT)",
+            "credentialCategory": "diploma"
+          }
+        ],
+        "worksFor": {"@id": "https://fitlabreviews.com/#organization"}
+      },
+      {
+        "@type": "WebPage",
+        "url": "https://fitlabreviews.com/about.html",
+        "name": "About FitLabReviews — Team, Methodology & Mission",
+        "description": "About FitLabReviews — our team, review methodology, scoring system, and editorial independence policy.",
+        "about": {"@id": "https://fitlabreviews.com/#organization"}
+      }
+    ]
+  }
+  </script>
+
   <style>
-    /* ── ABOUT HERO ───────────────────────────── */
+    /* ── ABOUT HERO ─────────────────────────────────────────── */
     .about-hero {
       background: var(--bg);
       border-bottom: 1px solid var(--border);
@@ -31,12 +85,16 @@
     .about-hero__avatar {
       width: 160px; height: 160px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 5rem;
+      overflow: hidden;
       margin: 0 auto 16px;
       border: 4px solid var(--white);
       box-shadow: var(--shadow-md);
+    }
+    .about-hero__avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
     }
     .about-hero__creds { display: flex; flex-direction: column; gap: 6px; }
     .cred-badge {
@@ -46,10 +104,18 @@
       border-radius: 50px; padding: 4px 12px;
       font-size: .75rem; font-weight: 700;
     }
+    .about-hero__tag {
+      display: inline-block;
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      background: var(--accent); color: #fff;
+      padding: 4px 12px; border-radius: 50px;
+      margin-bottom: 10px;
+    }
     .about-hero__name {
       font-family: var(--font-head);
       font-size: 2.4rem; font-weight: 700; color: var(--dark);
-      margin-bottom: 6px; letter-spacing: -.02em;
+      margin-bottom: 4px; letter-spacing: -.02em;
     }
     .about-hero__title {
       font-size: 1rem; color: var(--accent); font-weight: 600;
@@ -66,7 +132,68 @@
     .quick-stat__num { font-family: var(--font-head); font-size: 1.8rem; font-weight: 700; color: var(--dark); line-height: 1; }
     .quick-stat__label { font-size: .78rem; color: var(--muted); font-weight: 500; margin-top: 4px; }
 
-    /* ── MAIN LAYOUT ─────────────────────────── */
+    /* ── TEAM SECTION ───────────────────────────────────────── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 8px;
+    }
+    .team-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .team-card:hover { border-color: var(--accent); box-shadow: var(--shadow-sm); }
+    .team-card--founder { border-left: 3px solid var(--accent); }
+    .team-card__avatar {
+      width: 56px; height: 56px;
+      border-radius: 50%; flex-shrink: 0;
+      overflow: hidden; border: 2px solid var(--border);
+    }
+    .team-card__avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .team-card__icon {
+      width: 56px; height: 56px;
+      border-radius: 50%; flex-shrink: 0;
+      background: var(--accent-2-soft);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; border: 2px solid var(--border);
+    }
+    .team-card__badge {
+      display: inline-block; font-size: .65rem; font-weight: 700;
+      letter-spacing: .07em; text-transform: uppercase;
+      background: var(--accent); color: #fff;
+      padding: 2px 8px; border-radius: 4px; margin-bottom: 5px;
+    }
+    .team-card__badge--team {
+      background: var(--accent-2-soft); color: var(--accent-2);
+      border: 1px solid rgba(0,153,230,.2);
+    }
+    .team-card__name {
+      font-family: var(--font-head); font-size: 1rem;
+      font-weight: 600; color: var(--dark); margin-bottom: 2px;
+    }
+    .team-card__role { font-size: .78rem; color: var(--muted); margin-bottom: 8px; line-height: 1.4; }
+    .team-card__tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .team-card__tag {
+      font-size: .68rem; color: var(--muted);
+      background: var(--tag-bg); border-radius: 4px;
+      padding: 2px 7px;
+    }
+    .team-card__link {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .75rem; color: var(--accent); font-weight: 600;
+      margin-top: 8px;
+    }
+
+    /* ── MAIN LAYOUT ────────────────────────────────────────── */
     .about-layout {
       display: grid;
       grid-template-columns: 1fr 300px;
@@ -74,11 +201,12 @@
       padding: 60px 0;
     }
 
-    /* ── METHODOLOGY ─────────────────────────── */
+    /* ── METHODOLOGY ────────────────────────────────────────── */
     .method-step {
       display: flex; gap: 20px; align-items: flex-start;
       padding: 24px 0; border-bottom: 1px solid var(--border);
     }
+    .method-step:last-child { border-bottom: none; }
     .method-step__num {
       width: 44px; height: 44px; flex-shrink: 0;
       border-radius: 50%;
@@ -95,31 +223,31 @@
     }
     .method-step__desc { font-size: .88rem; color: var(--muted); line-height: 1.65; }
 
-    /* ── SCORING CRITERIA ────────────────────── */
+    /* ── SCORING ────────────────────────────────────────────── */
     .scoring-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
     .scoring-item {
       background: var(--bg);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border-radius: var(--r);
       padding: 16px;
     }
     .scoring-item__label { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); margin-bottom: 4px; }
     .scoring-item__weight { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: var(--dark); }
     .scoring-item__desc { font-size: .8rem; color: var(--muted); margin-top: 4px; }
 
-    /* ── VALUES ──────────────────────────────── */
+    /* ── VALUES ─────────────────────────────────────────────── */
     .values-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
     .value-card {
       background: var(--bg);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border-radius: var(--r);
       padding: 20px;
     }
     .value-card__icon { font-size: 1.6rem; margin-bottom: 10px; }
     .value-card__title { font-family: var(--font-head); font-size: 1rem; font-weight: 600; color: var(--dark); margin-bottom: 6px; }
     .value-card__desc { font-size: .83rem; color: var(--muted); line-height: 1.6; }
 
-    /* ── TIMELINE ────────────────────────────── */
+    /* ── TIMELINE ───────────────────────────────────────────── */
     .timeline-item {
       display: flex; gap: 16px; padding-bottom: 24px;
       position: relative;
@@ -143,27 +271,60 @@
     .timeline-title { font-size: .92rem; font-weight: 600; color: var(--dark); margin-bottom: 2px; }
     .timeline-desc { font-size: .82rem; color: var(--muted); line-height: 1.5; }
 
-    /* ── DISCLOSURE BOX ──────────────────────── */
+    /* ── POLICY BANNER ──────────────────────────────────────── */
+    .policy-banner {
+      background: var(--accent-soft);
+      border: 1px solid rgba(0,168,120,.2);
+      border-radius: var(--r-lg);
+      padding: 20px 24px;
+      margin-bottom: 36px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .policy-banner__icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .policy-banner__title { font-size: .88rem; font-weight: 700; color: var(--accent-dark); margin-bottom: 4px; }
+    .policy-banner__desc { font-size: .82rem; color: var(--accent-dark); line-height: 1.65; opacity: .85; }
+
+    /* ── DISCLOSURE BOX ─────────────────────────────────────── */
     .disclosure-box {
       background: #FFFBEB;
       border: 1px solid #FDE68A;
-      border-radius: var(--radius-lg);
+      border-radius: var(--r-lg);
       padding: 24px;
       margin-top: 36px;
     }
     .disclosure-box h3 { font-family: var(--font-head); font-size: 1rem; color: #92400E; margin-bottom: 10px; }
     .disclosure-box p { font-size: .85rem; color: #78350F; line-height: 1.7; }
 
+    /* ── LINKEDIN LINK ───────────────────────────────────────── */
+    .linkedin-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: .82rem; font-weight: 600;
+      color: #0a66c2;
+      background: #e8f0f8;
+      border: 1px solid #c5d8ee;
+      border-radius: 50px;
+      padding: 6px 14px;
+      text-decoration: none;
+      transition: background .15s;
+      margin-top: 8px;
+    }
+    .linkedin-btn:hover { background: #cfe0f5; }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────── */
     @media (max-width: 900px) {
       .about-hero__inner { grid-template-columns: 1fr; text-align: center; }
       .about-hero__avatar { margin: 0 auto 16px; }
       .about-hero__bio { margin: 0 auto 24px; }
       .about-hero__quick-stats { justify-content: center; }
       .about-layout { grid-template-columns: 1fr; }
-      .scoring-grid, .values-grid { grid-template-columns: 1fr; }
+      .scoring-grid, .values-grid, .team-grid { grid-template-columns: 1fr; }
+      .about-hero__creds { align-items: center; }
     }
-  html,body{overflow-x:hidden;max-width:100%}
-</style>
+    html,body{overflow-x:hidden;max-width:100%}
+  </style>
+
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N23DKB7H8K"></script>
   <script>
@@ -182,7 +343,7 @@
         <span class="nav__logo-text">fitlab<em>.</em></span>
       </a>
       <ul class="nav__links" role="list">
-        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="reviews.html">Reviews</a></li>
         <li><a href="brands.html">Brands</a></li>
         <li><a href="best/best-protein-powders.html">Best Of</a></li>
@@ -197,7 +358,7 @@
         <button class="nav__search-btn" id="navSearchBtn" aria-label="Search">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         </button>
-        <a href="ask-jake.html" class="nav__cta">Ask Jake
+        <a href="ask-jake.html" class="nav__cta">Ask FitLab AI
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </a>
         <button class="nav__hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
@@ -205,27 +366,26 @@
         </button>
       </div>
     </div>
-
   </nav>
 
   <div class="nav__search-overlay" id="navSearchOverlay">
-      <div class="nav__search-box">
-        <svg class="nav__search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" id="navSearchInput" class="nav__search-input" placeholder="Search reviews, ingredients, brands&#x2026;" autocomplete="off" spellcheck="false"/>
-        <button class="nav__search-close" id="navSearchClose" aria-label="Close search">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
-      </div>
-      <div class="nav__search-results" id="navSearchResults"></div>
-      <div class="nav__search-quick">
-        <span class="nav__search-quick-label">Popular:</span>
-        <a href="reviews/on-gold-standard-whey-review-2026.html">ON Gold Standard</a>
-        <a href="reviews/transparent-labs-bulk-black-review.html">BULK Black</a>
-        <a href="best/best-creatine.html">Best Creatine</a>
-        <a href="stacks/sleep-optimization.html">Sleep Stack</a>
-        <a href="compare.html">Compare Products</a>
-      </div>
+    <div class="nav__search-box">
+      <svg class="nav__search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="navSearchInput" class="nav__search-input" placeholder="Search reviews, ingredients, brands…" autocomplete="off" spellcheck="false"/>
+      <button class="nav__search-close" id="navSearchClose" aria-label="Close search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
     </div>
+    <div class="nav__search-results" id="navSearchResults"></div>
+    <div class="nav__search-quick">
+      <span class="nav__search-quick-label">Popular:</span>
+      <a href="reviews/on-gold-standard-whey-review-2026.html">ON Gold Standard</a>
+      <a href="reviews/transparent-labs-bulk-black-review.html">BULK Black</a>
+      <a href="best/best-creatine.html">Best Creatine</a>
+      <a href="stacks/sleep-optimization.html">Sleep Stack</a>
+      <a href="compare.html">Compare Products</a>
+    </div>
+  </div>
 
   <div class="nav__mobile" id="mobileNav" role="dialog" aria-modal="true" aria-label="Navigation">
     <div class="nav__mobile-header">
@@ -236,7 +396,7 @@
     </div>
     <div class="nav__mobile-search" id="mobSearchTrigger">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <span style="font-size:.9rem;color:var(--muted)">Search supplements&#x2026;</span>
+      <span style="font-size:.9rem;color:var(--muted)">Search supplements…</span>
     </div>
     <div class="nav__mobile-links">
       <a href="index.html">Home</a>
@@ -251,38 +411,58 @@
       <div class="nav__mobile-divider"></div>
       <a href="ingredients/index.html">Ingredients Library</a>
       <a href="blog.html">Blog &amp; Guides</a>
-      <a href="about.html">About Jake</a>
-      <a href="ask-jake.html" class="nav__mob-cta">Ask Jake AI &#x2192;</a>
+      <a href="authors/index.html">Our Team</a>
+      <a href="about.html" class="active">About</a>
+      <a href="ask-jake.html" class="nav__mob-cta">Ask FitLab AI &#x2192;</a>
     </div>
   </div>
 
-  <!-- ABOUT HERO -->
+  <!-- ABOUT HERO — PANKAJ SINGH AS FOUNDER -->
   <section class="about-hero">
     <div class="container">
       <div class="about-hero__inner">
+
         <div class="about-hero__avatar-wrap fade-up">
-          <div class="about-hero__avatar">🧑‍🔬</div>
-          <div class="about-hero__creds">
-            <span class="cred-badge">🎓 CISSN Certified</span>
-            <span class="cred-badge">💪 10 Yrs Experience</span>
-            <span class="cred-badge">✅ NSCA-CPT</span>
+          <div class="about-hero__avatar">
+            <img
+              src="images/authors/pankaj-singh.jpg"
+              alt="Pankaj Singh — Founder of FitLabReviews"
+              width="160" height="160"
+            />
           </div>
+          <div class="about-hero__creds">
+            <span class="cred-badge">🎓 B.Pharma — M.P.</span>
+            <span class="cred-badge">🧪 DMLT Graduate</span>
+            <span class="cred-badge">🔬 Site Founder</span>
+          </div>
+          <a
+            href="https://www.linkedin.com/in/pankaj-singh-171b0a404/"
+            class="linkedin-btn"
+            target="_blank"
+            rel="noopener"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
         </div>
+
         <div class="fade-up delay-1">
-          <div class="section-label">About the Reviewer</div>
-          <div class="about-hero__name">Jake Reynolds</div>
-          <div class="about-hero__title">Certified Sports Nutritionist · Fitness Coach · Supplement Researcher</div>
+          <div class="about-hero__tag">Site Founder</div>
+          <div class="section-label">About FitLabReviews</div>
+          <div class="about-hero__name">Pankaj Singh</div>
+          <div class="about-hero__title">B.Pharma Student · DMLT Graduate · Supplement Researcher · Founder</div>
           <p class="about-hero__bio">
-            I've spent the last 10 years in the fitness industry — first as a personal trainer, then as a sports nutritionist, and now as an independent supplement reviewer. I started FitLabReviews because I was tired of review sites that ranked products based on who paid the most for placement.<br><br>
-            Every review on this site is based on <strong>ingredient quality, dosing accuracy, third-party testing, and real-world results</strong> — not affiliate commissions. I do earn affiliate income from links on this site, but it never influences the scores.
+            I started FitLabReviews while studying Bachelor of Pharmacy in Madhya Pradesh — frustrated that supplement review sites apply marketing logic to what are essentially pharmaceutical products. My B.Pharma coursework in pharmacokinetics, bioavailability, and pharmaceutical chemistry gives me a framework most reviewers don't have. My completed DMLT means I understand what independent lab testing actually measures — and what it doesn't.<br><br>
+            Every review on this site is evaluated against the same fixed 5-criteria scoring methodology. Affiliate commissions have never — and will never — influence a score.
           </p>
           <div class="about-hero__quick-stats">
-            <div class="quick-stat"><div class="quick-stat__num">180+</div><div class="quick-stat__label">Products Reviewed</div></div>
-            <div class="quick-stat"><div class="quick-stat__num">10 Yrs</div><div class="quick-stat__label">Industry Experience</div></div>
-            <div class="quick-stat"><div class="quick-stat__num">50K+</div><div class="quick-stat__label">Monthly Readers</div></div>
-            <div class="quick-stat"><div class="quick-stat__num">3</div><div class="quick-stat__label">Certifications</div></div>
+            <div class="quick-stat"><div class="quick-stat__num">42+</div><div class="quick-stat__label">Products Reviewed</div></div>
+            <div class="quick-stat"><div class="quick-stat__num">B.Pharma</div><div class="quick-stat__label">Currently Enrolled</div></div>
+            <div class="quick-stat"><div class="quick-stat__num">DMLT</div><div class="quick-stat__label">Completed</div></div>
+            <div class="quick-stat"><div class="quick-stat__num">India</div><div class="quick-stat__label">Market Specialist</div></div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -294,26 +474,82 @@
       <!-- LEFT: MAIN CONTENT -->
       <main>
 
+        <!-- Policy Banner -->
+        <div class="policy-banner">
+          <div class="policy-banner__icon">🛡️</div>
+          <div>
+            <div class="policy-banner__title">Editorial independence policy</div>
+            <div class="policy-banner__desc">No brand has ever paid for positive coverage or paid to appear in our rankings. We earn affiliate commissions — but commission rates have zero influence on scores. A product that scores 5.0 stays at 5.0. Negative reviews are published and stay published, even when brands ask us to remove them.</div>
+          </div>
+        </div>
+
+        <!-- Our Team -->
+        <div style="margin-bottom:48px;" id="team">
+          <div class="section-label">Who We Are</div>
+          <h2 class="h2" style="margin-bottom:8px;">Meet the FitLabReviews Team</h2>
+          <p style="color:var(--muted);margin-bottom:20px;font-size:.93rem;">Every piece of content is produced by real people with relevant backgrounds — not anonymous writers or AI content farms.</p>
+          <div class="team-grid">
+
+            <!-- Pankaj -->
+            <a class="team-card team-card--founder" href="authors/pankaj-singh.html">
+              <div class="team-card__avatar">
+                <img src="images/authors/pankaj-singh.jpg" alt="Pankaj Singh" width="56" height="56"/>
+              </div>
+              <div>
+                <div class="team-card__badge">Founder</div>
+                <div class="team-card__name">Pankaj Singh</div>
+                <div class="team-card__role">B.Pharma Student · DMLT · Supplement Researcher</div>
+                <div class="team-card__tags">
+                  <span class="team-card__tag">Bioavailability</span>
+                  <span class="team-card__tag">Lab testing</span>
+                  <span class="team-card__tag">India market</span>
+                  <span class="team-card__tag">Clinical dosing</span>
+                </div>
+                <div class="team-card__link">Full profile →</div>
+              </div>
+            </a>
+
+            <!-- FitLab Research Team -->
+            <div class="team-card">
+              <div class="team-card__icon">🔬</div>
+              <div>
+                <div class="team-card__badge team-card__badge--team">Research Team</div>
+                <div class="team-card__name">FitLab Research Team</div>
+                <div class="team-card__role">Supplement Researchers · Science Writers</div>
+                <div class="team-card__tags">
+                  <span class="team-card__tag">Protein reviews</span>
+                  <span class="team-card__tag">Pre-workout</span>
+                  <span class="team-card__tag">Brand analysis</span>
+                  <span class="team-card__tag">Ingredient guides</span>
+                </div>
+                <div class="team-card__link" style="color:var(--muted-2);">5-criteria methodology</div>
+              </div>
+            </div>
+
+          </div>
+          <p style="margin-top:14px;"><a href="authors/index.html" style="font-size:.85rem;color:var(--accent);font-weight:600;">View full team page →</a></p>
+        </div>
+
         <!-- Our Mission -->
         <div style="margin-bottom:48px;">
           <div class="section-label">Our Mission</div>
           <h2 class="h2" style="margin-bottom:16px;">Honest Reviews in an Industry Full of Hype</h2>
           <div class="prose">
-            <p>The supplement industry generates over $150 billion annually — and most of that is fueled by marketing, not science. Prop blends hide underdosed ingredients. Flashy ads make ordinary products sound revolutionary. Review sites rank products based on affiliate payout, not efficacy.</p>
-            <p>FitLabReviews exists to cut through that noise. My goal is simple: <strong>help you make better purchasing decisions with your health and money.</strong></p>
-            <p>When I recommend a product, I do so because I believe it genuinely delivers on its claims — not because the brand is paying me a high commission rate. When a product doesn't live up to the hype, I say that clearly, even if it costs me revenue.</p>
+            <p>The supplement industry generates over $150 billion annually — and most of that is fueled by marketing, not science. Proprietary blends hide underdosed ingredients. Flashy ads make ordinary products sound revolutionary. Review sites rank products based on affiliate payout, not efficacy.</p>
+            <p>FitLabReviews exists to cut through that noise. The goal is simple: <strong>help you make better purchasing decisions with your health and money.</strong></p>
+            <p>When a product is recommended here, it's because it genuinely delivers on its claims — not because the brand pays a high commission rate. When a product doesn't live up to the hype, we say that clearly, even if it costs us revenue.</p>
           </div>
         </div>
 
-        <!-- Our Values -->
+        <!-- Core Values -->
         <div style="margin-bottom:48px;">
           <div class="section-label">What We Stand For</div>
           <h2 class="h2" style="margin-bottom:8px;">Core Values</h2>
           <div class="values-grid">
             <div class="value-card">
               <div class="value-card__icon">🔬</div>
-              <div class="value-card__title">Science First</div>
-              <div class="value-card__desc">Every claim we make is backed by peer-reviewed research. We link to the studies we reference so you can verify for yourself.</div>
+              <div class="value-card__title">Pharma Science First</div>
+              <div class="value-card__desc">Every claim is backed by peer-reviewed research. Ingredient bioavailability, pharmacokinetics, and clinical dosing — not marketing claims — determine our verdicts.</div>
             </div>
             <div class="value-card">
               <div class="value-card__icon">🚫</div>
@@ -323,55 +559,55 @@
             <div class="value-card">
               <div class="value-card__icon">💡</div>
               <div class="value-card__title">Full Transparency</div>
-              <div class="value-card__desc">We clearly disclose all affiliate relationships, methodology, and potential conflicts of interest on every page.</div>
+              <div class="value-card__desc">All affiliate relationships, methodology, and conflicts of interest are disclosed clearly. Our scoring methodology is published and applied consistently to every product.</div>
             </div>
             <div class="value-card">
               <div class="value-card__icon">🔄</div>
               <div class="value-card__title">Always Updated</div>
-              <div class="value-card__desc">Formulas change. New research emerges. We revisit and update all major reviews every 6–12 months.</div>
+              <div class="value-card__desc">Formulas change. New research emerges. All major reviews are revisited and updated every 6–12 months to reflect current evidence.</div>
             </div>
           </div>
         </div>
 
         <!-- Review Methodology -->
-        <div style="margin-bottom:48px;">
+        <div style="margin-bottom:48px;" id="methodology">
           <div class="section-label">How We Review</div>
           <h2 class="h2" style="margin-bottom:8px;">Our Methodology</h2>
-          <p style="color:var(--muted);margin-bottom:24px;font-size:.93rem;">Every supplement goes through a structured 5-step review process before a score is assigned.</p>
+          <p style="color:var(--muted);margin-bottom:24px;font-size:.93rem;">Every supplement goes through a structured 5-step process before a FitLab Score is assigned. No exceptions.</p>
 
           <div class="method-step">
             <div class="method-step__num">1</div>
             <div>
               <div class="method-step__title">Ingredient Analysis</div>
-              <p class="method-step__desc">We analyze every ingredient against current peer-reviewed literature, checking for evidence of efficacy, bioavailability, and safety at the doses used.</p>
+              <p class="method-step__desc">Every ingredient is checked against current peer-reviewed literature for evidence of efficacy, bioavailability, and safety at the dose used. Ingredient form matters — magnesium oxide vs glycinate, cyanocobalamin vs methylcobalamin — and is evaluated accordingly.</p>
             </div>
           </div>
           <div class="method-step">
             <div class="method-step__num">2</div>
             <div>
               <div class="method-step__title">Dosing Accuracy Check</div>
-              <p class="method-step__desc">We compare serving sizes and dosages against the clinically effective doses established in research. Underdosed "fairy dust" ingredients are flagged and penalized.</p>
+              <p class="method-step__desc">Serving sizes and dosages are compared against the clinically effective doses established in research. Underdosed "fairy dust" ingredients are flagged and penalised. The label dose and the clinical dose are two different numbers — and we check both.</p>
             </div>
           </div>
           <div class="method-step">
             <div class="method-step__num">3</div>
             <div>
               <div class="method-step__title">Label Transparency Audit</div>
-              <p class="method-step__desc">Proprietary blends lose points. Products with full label disclosure — every ingredient, every dose — are scored higher. We also check for third-party testing certifications (NSF, Informed Sport, etc.).</p>
+              <p class="method-step__desc">Proprietary blends lose points. Products with full label disclosure — every ingredient, every dose — are scored higher. Third-party testing certifications (NSF, Informed Sport, Trustified, FSSAI) are verified and noted.</p>
             </div>
           </div>
           <div class="method-step">
             <div class="method-step__num">4</div>
             <div>
               <div class="method-step__title">Real-World Testing</div>
-              <p class="method-step__desc">Where possible, we test the product personally or gather feedback from verified users. Taste, mixability, and actual performance over 4–8 weeks are factored into the score.</p>
+              <p class="method-step__desc">Products are tested personally where possible — including MuscleBlaze, ON Gold Standard, and other India-available products used regularly. Taste, mixability, and actual performance over 4–8 weeks are factored into the score.</p>
             </div>
           </div>
           <div class="method-step">
             <div class="method-step__num">5</div>
             <div>
               <div class="method-step__title">Value Assessment</div>
-              <p class="method-step__desc">We calculate the cost per effective dose and compare it to alternatives. A great formula that costs 3x its competitors will have points deducted from its final score.</p>
+              <p class="method-step__desc">Cost per effective dose is calculated and compared to alternatives in the same category. A great formula that costs 3× its competitors has points deducted. INR pricing is assessed for all India-market products.</p>
             </div>
           </div>
         </div>
@@ -380,12 +616,12 @@
         <div style="margin-bottom:48px;">
           <div class="section-label">Scoring System</div>
           <h2 class="h2" style="margin-bottom:8px;">How FitLab Scores Are Calculated</h2>
-          <p style="color:var(--muted);margin-bottom:16px;font-size:.93rem;">Each product is scored out of 10 using a weighted system across 5 criteria:</p>
+          <p style="color:var(--muted);margin-bottom:16px;font-size:.93rem;">Each product is scored out of 10 using a weighted system. Weights reflect clinical importance, not marketing value.</p>
           <div class="scoring-grid">
             <div class="scoring-item">
               <div class="scoring-item__label">Ingredient Quality</div>
               <div class="scoring-item__weight">30%</div>
-              <div class="scoring-item__desc">Are the ingredients evidence-based?</div>
+              <div class="scoring-item__desc">Are the ingredients evidence-based and in the right form?</div>
             </div>
             <div class="scoring-item">
               <div class="scoring-item__label">Dosing Accuracy</div>
@@ -395,76 +631,99 @@
             <div class="scoring-item">
               <div class="scoring-item__label">Label Transparency</div>
               <div class="scoring-item__weight">20%</div>
-              <div class="scoring-item__desc">Full disclosure, no prop blends?</div>
+              <div class="scoring-item__desc">Full disclosure — no proprietary blends?</div>
             </div>
             <div class="scoring-item">
               <div class="scoring-item__label">Real-World Results</div>
               <div class="scoring-item__weight">15%</div>
-              <div class="scoring-item__desc">Taste, mixability, actual effect</div>
+              <div class="scoring-item__desc">Taste, mixability, actual performance</div>
             </div>
             <div class="scoring-item" style="grid-column: 1 / -1;">
               <div class="scoring-item__label">Value for Money</div>
               <div class="scoring-item__weight">10%</div>
-              <div class="scoring-item__desc">Cost per effective dose vs. alternatives</div>
+              <div class="scoring-item__desc">Cost per effective dose vs. comparable alternatives</div>
             </div>
           </div>
         </div>
 
-        <!-- Background Timeline -->
+        <!-- Founder Background -->
         <div style="margin-bottom:40px;">
-          <div class="section-label">My Background</div>
-          <h2 class="h2" style="margin-bottom:24px;">Experience & Credentials</h2>
-          <div class="timeline-item">
-            <div class="timeline-dot">🎓</div>
-            <div>
-              <div class="timeline-year">2015</div>
-              <div class="timeline-title">B.Sc. in Exercise Science — University of Michigan</div>
-              <div class="timeline-desc">Foundation in physiology, biomechanics, and nutrition science.</div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot">💪</div>
-            <div>
-              <div class="timeline-year">2016</div>
-              <div class="timeline-title">NSCA Certified Personal Trainer (CPT)</div>
-              <div class="timeline-desc">Began coaching competitive athletes and general fitness clients.</div>
-            </div>
-          </div>
+          <div class="section-label">Founder Background</div>
+          <h2 class="h2" style="margin-bottom:24px;">Credentials & Experience</h2>
           <div class="timeline-item">
             <div class="timeline-dot">🧪</div>
             <div>
-              <div class="timeline-year">2018</div>
-              <div class="timeline-title">CISSN — Certified Sports Nutritionist (ISSN)</div>
-              <div class="timeline-desc">Specialized in supplement science, ergogenics, and performance nutrition.</div>
+              <div class="timeline-year">COMPLETED</div>
+              <div class="timeline-title">DMLT — Diploma in Medical Laboratory Technology</div>
+              <div class="timeline-desc">Training in lab testing methodology, biochemical assay techniques, and quality analysis — applied to evaluating third-party supplement testing claims and amino acid profiling.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot">🎓</div>
+            <div>
+              <div class="timeline-year">CURRENTLY ENROLLED</div>
+              <div class="timeline-title">B.Pharma — Bachelor of Pharmacy, Madhya Pradesh</div>
+              <div class="timeline-desc">Coursework covering pharmacokinetics, pharmaceutical chemistry, bioavailability, drug formulation, and clinical pharmacology — applied directly to supplement ingredient analysis on FitLabReviews.</div>
             </div>
           </div>
           <div class="timeline-item">
             <div class="timeline-dot">🔬</div>
             <div>
-              <div class="timeline-year">2020</div>
+              <div class="timeline-year">FOUNDED</div>
               <div class="timeline-title">Founded FitLabReviews.com</div>
-              <div class="timeline-desc">Launched with a focus on transparent, research-backed supplement reviews — no paid placements, no bias.</div>
+              <div class="timeline-desc">Launched to apply pharmaceutical science principles to supplement reviews — building a fixed scoring methodology, India market section, ingredient library, and editorial independence policy from day one.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot">🇮🇳</div>
+            <div>
+              <div class="timeline-year">ONGOING</div>
+              <div class="timeline-title">India Market Research &amp; FSSAI Analysis</div>
+              <div class="timeline-desc">Regular user of Indian supplements — MuscleBlaze Biozyme and ON Gold Standard among others. Covers FSSAI certification, INR pricing, and Amazon India availability for all India-market content.</div>
             </div>
           </div>
         </div>
 
         <!-- Disclosure -->
         <div class="disclosure-box">
-          <h3>⚠️ Affiliate Disclosure</h3>
-          <p>FitLabReviews.com participates in affiliate marketing programs including <strong>Clickbank, MaxWeb, and GuruMedia</strong>. When you click a link and make a purchase, we may earn a commission at no additional cost to you. This income helps keep the site running and allows us to continue producing independent reviews. Affiliate relationships <strong>never influence our scores or recommendations</strong> — a product recommended here is recommended because it is genuinely good, not because it pays a high commission.</p>
+          <h3>⚠️ Affiliate &amp; Conflict of Interest Disclosure</h3>
+          <p>FitLabReviews.com participates in affiliate marketing programmes including <strong>Amazon Associates, Clickbank, MaxWeb, and GuruMedia</strong>. When you click a link and make a purchase, we may earn a commission at no additional cost to you. This income helps keep the site running and allows us to continue producing independent reviews. Affiliate relationships <strong>never influence our scores or recommendations</strong>. Pankaj Singh, as site founder, owns and operates FitLabReviews.com. No brand has ever paid for a positive review or a ranking position on this site.</p>
         </div>
 
       </main>
 
       <!-- RIGHT: SIDEBAR -->
       <aside>
+
+        <!-- Quick Team Links -->
+        <div class="sidebar-widget">
+          <h3>👥 Our Team</h3>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <a href="authors/pankaj-singh.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;padding:10px;border-radius:var(--r);border:1px solid var(--border);transition:border-color .15s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+              <img src="images/authors/pankaj-singh.jpg" alt="Pankaj Singh" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:center top;border:1.5px solid var(--border);flex-shrink:0;"/>
+              <div>
+                <div style="font-size:.82rem;font-weight:600;color:var(--dark);">Pankaj Singh</div>
+                <div style="font-size:.73rem;color:var(--muted);">Founder · B.Pharma · DMLT</div>
+              </div>
+            </a>
+            <a href="authors/index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;padding:10px;border-radius:var(--r);border:1px solid var(--border);transition:border-color .15s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+              <div style="width:36px;height:36px;border-radius:50%;background:var(--accent-2-soft);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;border:1.5px solid var(--border);">🔬</div>
+              <div>
+                <div style="font-size:.82rem;font-weight:600;color:var(--dark);">FitLab Research Team</div>
+                <div style="font-size:.73rem;color:var(--muted);">Science writers · Researchers</div>
+              </div>
+            </a>
+          </div>
+          <a href="authors/index.html" style="display:block;text-align:center;font-size:.8rem;color:var(--accent);font-weight:600;margin-top:12px;">View full team page →</a>
+        </div>
+
         <!-- Contact -->
         <div class="sidebar-widget">
           <h3>📬 Get in Touch</h3>
-          <p style="font-size:.85rem;color:var(--muted);line-height:1.65;margin-bottom:14px;">Have a product you'd like reviewed? A question about a review? Send me a message.</p>
-          <input type="text" placeholder="Your name" style="width:100%;padding:9px 14px;border-radius:var(--radius);border:1px solid var(--border);font-family:var(--font-body);font-size:.85rem;outline:none;margin-bottom:8px;"/>
-          <input type="email" placeholder="your@email.com" style="width:100%;padding:9px 14px;border-radius:var(--radius);border:1px solid var(--border);font-family:var(--font-body);font-size:.85rem;outline:none;margin-bottom:8px;"/>
-          <textarea placeholder="Your message..." rows="4" style="width:100%;padding:9px 14px;border-radius:var(--radius);border:1px solid var(--border);font-family:var(--font-body);font-size:.85rem;outline:none;resize:vertical;margin-bottom:10px;"></textarea>
+          <p style="font-size:.85rem;color:var(--muted);line-height:1.65;margin-bottom:14px;">Have a product you'd like reviewed? A question about our methodology? Send a message.</p>
+          <input type="text" placeholder="Your name" style="width:100%;padding:9px 14px;border-radius:var(--r);border:1px solid var(--border);font-family:var(--font-body);font-size:.85rem;outline:none;margin-bottom:8px;"/>
+          <input type="email" placeholder="your@email.com" style="width:100%;padding:9px 14px;border-radius:var(--r);border:1px solid var(--border);font-family:var(--font-body);font-size:.85rem;outline:none;margin-bottom:8px;"/>
+          <textarea placeholder="Your message..." rows="4" style="width:100%;padding:9px 14px;border-radius:var(--r);border:1px solid var(--border);font-family:var(--font-body);font-size:.85rem;outline:none;resize:vertical;margin-bottom:10px;"></textarea>
           <button class="btn btn-primary" style="width:100%;justify-content:center;">Send Message →</button>
         </div>
 
@@ -486,20 +745,22 @@
             </div>
             <div style="display:flex;align-items:flex-start;gap:10px;">
               <span style="font-size:1.1rem;margin-top:1px;">✅</span>
-              <div style="font-size:.83rem;color:var(--muted);line-height:1.6;">Affiliate relationships are disclosed on every page</div>
+              <div style="font-size:.83rem;color:var(--muted);line-height:1.6;">All four affiliate networks disclosed by name on every page</div>
             </div>
           </div>
         </div>
 
-        <!-- Certifications -->
+        <!-- Founder Credentials -->
         <div class="sidebar-widget" style="text-align:center;">
-          <h3>🎓 Certifications</h3>
+          <h3>🎓 Founder Credentials</h3>
           <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">
-            <div style="background:var(--accent-soft);border-radius:var(--radius);padding:12px;font-size:.85rem;font-weight:600;color:var(--accent);">🧪 CISSN — Sports Nutrition</div>
-            <div style="background:var(--accent-soft);border-radius:var(--radius);padding:12px;font-size:.85rem;font-weight:600;color:var(--accent);">💪 NSCA-CPT — Personal Training</div>
-            <div style="background:var(--accent-soft);border-radius:var(--radius);padding:12px;font-size:.85rem;font-weight:600;color:var(--accent);">🎓 B.Sc. Exercise Science</div>
+            <div style="background:var(--accent-soft);border-radius:var(--r);padding:12px;font-size:.85rem;font-weight:600;color:var(--accent);">🎓 B.Pharma — Madhya Pradesh</div>
+            <div style="background:var(--accent-soft);border-radius:var(--r);padding:12px;font-size:.85rem;font-weight:600;color:var(--accent);">🧪 DMLT — Completed</div>
+            <div style="background:var(--accent-soft);border-radius:var(--r);padding:12px;font-size:.85rem;font-weight:600;color:var(--accent);">🔬 Founder, FitLabReviews</div>
           </div>
+          <a href="authors/pankaj-singh.html" class="btn btn-outline btn-sm" style="margin-top:14px;display:inline-flex;">Full author profile →</a>
         </div>
+
       </aside>
 
     </div>
@@ -510,21 +771,19 @@
     <div class="container">
       <div class="footer__grid">
 
-        <!-- Brand -->
         <div class="footer__brand-col">
           <a href="index.html" class="footer__logo-link">
             <span class="footer__logo-text">fitlab<em>.</em></span>
           </a>
-          <p class="footer__desc">Science-backed supplement and fitness gadget reviews. We test ingredients, verify clinical doses, and call out the marketing fluff — so you spend money on what actually works.</p>
+          <p class="footer__desc">Science-backed supplement reviews applying pharmaceutical science to ingredient analysis. No paid placements. No brand bias.</p>
           <div class="footer__trust">
             <span>No paid placements</span>
             <span>Independent reviews</span>
             <span>Zero brand bias</span>
-            <span>Jake Reynolds, CISSN</span>
+            <span>B.Pharma + DMLT founder</span>
           </div>
         </div>
 
-        <!-- Reviews -->
         <div class="footer__col">
           <h4>Reviews</h4>
           <a href="reviews/on-gold-standard-whey-review-2026.html">ON Gold Standard Whey</a>
@@ -536,7 +795,6 @@
           <a href="reviews.html" class="footer__more">All Reviews →</a>
         </div>
 
-        <!-- Best Of -->
         <div class="footer__col">
           <h4>Best Of 2026</h4>
           <a href="best/best-pre-workouts.html">Best Pre-Workouts</a>
@@ -546,7 +804,6 @@
           <a href="best/best-sleep-supplements.html">Best Sleep Supplements</a>
         </div>
 
-        <!-- Ingredients -->
         <div class="footer__col">
           <h4>Ingredients</h4>
           <a href="ingredients/creatine.html">Creatine Monohydrate</a>
@@ -555,10 +812,9 @@
           <a href="ingredients/whey-protein.html">Whey Protein</a>
           <a href="ingredients/ashwagandha.html">Ashwagandha</a>
           <a href="ingredients/magnesium.html">Magnesium</a>
-          <a href="ingredients/index.html" class="footer__more">All 30 Ingredients →</a>
+          <a href="ingredients/index.html" class="footer__more">All Ingredients →</a>
         </div>
 
-        <!-- Company -->
         <div class="footer__col">
           <h4>Blog</h4>
           <a href="blog/best-supplements-for-muscle-gain.html">Muscle Gain Guide</a>
@@ -567,12 +823,13 @@
           <a href="blog/creatine-hcl-vs-monohydrate.html">Creatine HCL vs Mono</a>
           <a href="blog.html" class="footer__more">All Articles →</a>
           <h4 style="margin-top:22px">Company</h4>
-          <a href="about.html">About Jake Reynolds</a>
+          <a href="authors/index.html">Our Team</a>
+          <a href="about.html">About FitLabReviews</a>
           <a href="privacy.html">Privacy Policy</a>
           <a href="terms.html">Terms of Use</a>
         </div>
 
-      </div><!-- .footer__grid -->
+      </div>
 
       <div class="footer__bottom-bar">
         <span class="footer__copyright">© 2026 FitLabReviews.com · All rights reserved</span>
@@ -580,12 +837,13 @@
           <a href="privacy.html">Privacy</a>
           <a href="terms.html">Terms</a>
           <a href="about.html">About</a>
+          <a href="authors/index.html">Our Team</a>
           <a href="search.html">Search</a>
         </div>
       </div>
 
       <p class="footer__disclaimer">
-        <strong>Affiliate Disclosure:</strong> FitLabReviews.com participates in affiliate marketing programmes. We may earn a commission when you purchase through our links at no additional cost to you. Affiliate relationships never influence our rankings or review scores — products are evaluated solely on ingredient quality, clinical dosing, transparency, and value. Reviews authored by Jake Reynolds, CISSN (Certified Sports Nutritionist).
+        <strong>Affiliate Disclosure:</strong> FitLabReviews.com participates in affiliate marketing programmes including Amazon Associates, Clickbank, MaxWeb, and GuruMedia. We may earn a commission when you purchase through our links at no additional cost to you. Affiliate relationships never influence our rankings or review scores — products are evaluated solely on ingredient quality, clinical dosing, transparency, and value. Founded and operated by Pankaj Singh, B.Pharma student and DMLT graduate.
       </p>
 
     </div>
@@ -593,7 +851,6 @@
 
 <script>
 (function(){
-  // Hamburger menu
   var btn=document.getElementById('navHamburger');
   var drawer=document.getElementById('mobileNav');
   var closeBtn=document.getElementById('navClose');
@@ -618,50 +875,26 @@
     document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeMenu(); });
     drawer.addEventListener('click',function(e){ if(e.target===drawer) closeMenu(); });
   }
-
-  // Search overlay
   var searchBtn=document.getElementById('navSearchBtn');
   var searchOverlay=document.getElementById('navSearchOverlay');
   var searchClose=document.getElementById('navSearchClose');
   var searchInput=document.getElementById('navSearchInput');
   var searchResults=document.getElementById('navSearchResults');
-
-  // Search data
   var SEARCH_DATA=[
     {t:'ON Gold Standard 100% Whey Review',url:'reviews/on-gold-standard-whey-review-2026.html',cat:'Review'},
     {t:'Dymatize ISO100 Hydrolyzed Whey Review',url:'reviews/dymatize-iso100-review-2026.html',cat:'Review'},
     {t:'Transparent Labs BULK Black Review',url:'reviews/transparent-labs-bulk-black-review.html',cat:'Review'},
     {t:'Instant Knockout Cut Review',url:'reviews/instant-knockout-cut-review-2026.html',cat:'Review'},
     {t:'MuscleBlaze Biozyme Whey Review',url:'reviews/muscleblaze-biozyme-whey-review-2026.html',cat:'Review'},
-    {t:'Thorne Creatine Review',url:'reviews/thorne-creatine-review-2026.html',cat:'Review'},
     {t:'PhenQ Fat Burner Review',url:'reviews/phenq-review-2026.html',cat:'Review'},
-    {t:'Gorilla Mode Pre-Workout Review',url:'reviews/gorilla-mode-pre-workout-review-2026.html',cat:'Review'},
     {t:'Best Protein Powders 2026',url:'best/best-protein-powders.html',cat:'Best Of'},
     {t:'Best Pre-Workouts 2026',url:'best/best-pre-workouts.html',cat:'Best Of'},
     {t:'Best Creatine 2026',url:'best/best-creatine.html',cat:'Best Of'},
-    {t:'Best Fat Burners 2026',url:'best/best-fat-burners.html',cat:'Best Of'},
-    {t:'Best Sleep Supplements 2026',url:'best/best-sleep-supplements.html',cat:'Best Of'},
-    {t:'Optimum Nutrition Brand Analysis',url:'brands/optimum-nutrition.html',cat:'Brand'},
-    {t:'Transparent Labs Brand Analysis',url:'brands/transparent-labs.html',cat:'Brand'},
-    {t:'Dymatize Brand Analysis',url:'brands/dymatize.html',cat:'Brand'},
-    {t:'MuscleBlaze Brand Analysis',url:'brands/muscleblaze.html',cat:'Brand'},
+    {t:'Creatine Monohydrate Guide',url:'ingredients/creatine.html',cat:'Ingredient'},
+    {t:'Caffeine Guide',url:'ingredients/caffeine.html',cat:'Ingredient'},
     {t:'Muscle Gain Stack',url:'stacks/muscle-gain.html',cat:'Stack'},
     {t:'Sleep Optimization Stack',url:'stacks/sleep-optimization.html',cat:'Stack'},
-    {t:'Fat Loss Support Stack',url:'stacks/fat-loss.html',cat:'Stack'},
-    {t:'Pre-Workout Performance Stack',url:'stacks/pre-workout-performance.html',cat:'Stack'},
-    {t:'Cognitive Focus Stack',url:'stacks/cognitive-focus.html',cat:'Stack'},
-    {t:'Foundational Health Stack',url:'stacks/foundational-health.html',cat:'Stack'},
-    {t:'Creatine Monohydrate — Ingredient Guide',url:'ingredients/creatine.html',cat:'Ingredient'},
-    {t:'Caffeine — Ingredient Guide',url:'ingredients/caffeine.html',cat:'Ingredient'},
-    {t:'L-Citrulline — Ingredient Guide',url:'ingredients/citrulline.html',cat:'Ingredient'},
-    {t:'Ashwagandha — Ingredient Guide',url:'ingredients/ashwagandha.html',cat:'Ingredient'},
-    {t:'Magnesium — Ingredient Guide',url:'ingredients/magnesium.html',cat:'Ingredient'},
-    {t:'Whey Protein — Ingredient Guide',url:'ingredients/whey-protein.html',cat:'Ingredient'},
-    {t:'ON Gold Standard vs ISO100 Comparison',url:'comparisons/on-gold-standard-vs-iso100.html',cat:'Compare'},
-    {t:'Whey vs Plant Protein Comparison',url:'comparisons/whey-vs-plant-protein.html',cat:'Compare'},
-    {t:'BULK Black vs C4 Original Comparison',url:'comparisons/transparent-labs-vs-c4.html',cat:'Compare'},
   ];
-
   function openSearch(){
     searchOverlay.classList.add('open');
     document.body.style.overflow='hidden';
@@ -673,25 +906,19 @@
     if(searchInput) searchInput.value='';
     if(searchResults) searchResults.innerHTML='';
   }
-
   if(searchBtn) searchBtn.addEventListener('click', openSearch);
   if(searchClose) searchClose.addEventListener('click', closeSearch);
-  if(searchOverlay){
-    searchOverlay.addEventListener('click',function(e){
-      if(e.target===searchOverlay) closeSearch();
-    });
-  }
+  if(searchOverlay){ searchOverlay.addEventListener('click',function(e){ if(e.target===searchOverlay) closeSearch(); }); }
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape') closeSearch();
     if((e.ctrlKey||e.metaKey)&&e.key==='k'){ e.preventDefault(); openSearch(); }
   });
-
   if(searchInput){
     searchInput.addEventListener('input',function(){
       var q=this.value.trim().toLowerCase();
-      if(!q || q.length < 2){ searchResults.innerHTML=''; return; }
+      if(!q||q.length<2){ searchResults.innerHTML=''; return; }
       var hits=SEARCH_DATA.filter(function(d){ return d.t.toLowerCase().includes(q); }).slice(0,6);
-      if(!hits.length){ searchResults.innerHTML='<div style="padding:16px 18px;font-size:.88rem;color:var(--muted)">No results for \\"'+q+'\\"</div>'; return; }
+      if(!hits.length){ searchResults.innerHTML='<div style="padding:16px 18px;font-size:.88rem;color:var(--muted)">No results for "'+q+'"</div>'; return; }
       searchResults.innerHTML=hits.map(function(h){
         return '<a href="'+h.url+'" class="nav__search-result-item">'
           +'<span class="sr-cat">'+h.cat+'</span>'
