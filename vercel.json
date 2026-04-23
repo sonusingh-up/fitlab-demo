@@ -1,3 +1,7 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/ingredients/:slug", "destination": "/ingredients/:slug.html" },
+    { "source": "/categories/:slug", "destination": "/categories/:slug.html" }
+  ]
 }
